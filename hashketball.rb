@@ -104,6 +104,77 @@ def player_numbers(team)
   }
 arr
 end
+<<<<<<< HEAD
+=======
+
+def player_stats(name)
+    game_hash.each {|team, info|
+       info[:players].each{|stats|
+        if name == stats[:player_name]
+          return stats.reject{|key, value|
+            key == :player_name
+          }   
+          end
+       }  
+    }
+end
+
+def big_shoe_rebounds
+  arr = []
+  game_hash.each{|team, info|
+    info[:players].each{|stats, value|
+      arr << stats[:shoe]
+    }
+    
+      info[:players].each{|stats|
+      if arr.max == stats[:shoe]
+        return stats[:rebounds] 
+      end
+      }
+  }
+end
+
+def most_points_scored
+most_points = 0
+player = ""
+  game_hash.each{|team, info| 
+    info[:players].each{|stats|
+      if stats[:points] > most_points
+        most_points = stats[:points]
+        player = stats[:player_name]
+        end
+    }
+    
+  }
+    return player
+end
+
+def winning_team
+  home = []
+  away = []
+  home_points = 0
+  away_points = 0
+  game_hash.each{|team, info|
+    if info[:team_name] == "Brooklyn Nets"
+      info[:players].each{|stats|
+        home << stats[:points]
+      }
+  end
+  if info[:team_name] == "Charlotte Hornets"
+      info[:players].each{|stats|
+        away << stats[:points]
+      }
+  end
+  if home.sum > away.sum
+    return "Brooklyn Nets"
+    else
+    return "Charlotte Hornets"
+    end
+    
+ }
+
+end
+>>>>>>> e1e789dfa0468cc49e5e6c32373bda74692ce63d
 
 def player_stats(name)
     game_hash.each {|team, info|
